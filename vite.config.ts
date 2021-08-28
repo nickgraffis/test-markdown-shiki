@@ -13,6 +13,7 @@ import VueI18n from '@intlify/vite-plugin-vue-i18n'
 import Prism from 'markdown-it-prism'
 // @ts-expect-error missing types
 import LinkAttributes from 'markdown-it-link-attributes'
+import Shiki from 'markdown-it-shiki'
 
 const markdownWrapperClasses = 'prose prose-sm m-auto text-left'
 
@@ -82,7 +83,9 @@ export default defineConfig({
       headEnabled: true,
       markdownItSetup(md) {
         // https://prismjs.com/
-        md.use(Prism)
+        md.use(Shiki, {
+          theme: 'nord'
+        })
         md.use(LinkAttributes, {
           pattern: /^https?:\/\//,
           attrs: {
